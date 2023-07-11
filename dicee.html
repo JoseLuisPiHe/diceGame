@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dicee</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Refresh Me</h1>
+      <div class="dice">
+        <p>Player 1</p>
+        <img class="img1" src="images/dice6.png" />
+      </div>
+      <div class="dice">
+        <p>Player 2</p>
+        <img class="img2" src="images/dice1.png" />
+      </div>
+      <button onclick="refreshDice()">Refresh</button>
+    </div>
+    <script>
+      function getRandomInt() {
+        return Math.floor(Math.random() * 6) + 1;
+      }
+      function setDiceImage(element, randomNumber) {
+        element.setAttribute("src", "images/dice" + randomNumber + ".png");
+      }
+      function refreshDice() {
+        var dice1 = document.querySelector(".img1");
+        var dice2 = document.querySelector(".img2");
+        var randomNumber1 = getRandomInt();
+        var randomNumber2 = getRandomInt();
+        setDiceImage(dice1, randomNumber1);
+        setDiceImage(dice2, randomNumber2);
+        updateWinner(randomNumber1, randomNumber2);
+      }
+      function updateWinner(randomNumber1, randomNumber2) {
+        var resultText = document.querySelector("h1");
+        if (randomNumber1 > randomNumber2) {
+          resultText.textContent = "Player 1 wins!";
+        } else if (randomNumber1 < randomNumber2) {
+          resultText.textContent = "Player 2 wins!";
+        } else {
+          resultText.textContent = "It's a draw!";
+        }
+      }
+    </script>
+  </body>
+  <footer>www 🎲 App Brewery 🎲 com</footer>
+</html>
